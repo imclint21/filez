@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { type ChangeEvent, type DragEvent, type FormEvent, useRef, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast from "react-hot-toast";
+import { SiGithub } from "react-icons/si";
 
 import "./App.css";
 
@@ -79,10 +80,12 @@ export default function App() {
 				</CopyToClipboard>
 			</Card>
 
-			<footer className={"mt-10 text-sm text-gray-500"}>
-				Powered by XXI, LLC •{" "}
-				<a href="https://xxi.business" className={"hover:text-tremor-brand-emphasis"}>
-					Learn more
+			<footer className={"flex items-center gap-3 mt-10 text-sm text-gray-500"}>
+				Powered by XXI, LLC
+				<span>&bull;</span>
+				<a href="https://github.com/imclint21/filez" className={"inline-flex items-center gap-1 hover:text-tremor-brand-emphasis"}>
+					<SiGithub size={16} />
+					Fork us on GitHub
 				</a>
 			</footer>
 		</main>
