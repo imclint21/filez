@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
-
+builder.Services.AddHealthChecks();
 builder.Services.AddMemoryCache();
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy => policy
 	.WithOrigins("http://localhost:5173", "https://fil.ez")
@@ -24,7 +24,7 @@ app.UseRouting();
 app.UseCors();
 app.UseStaticFiles();
 app.MapStaticAssets();
-
+app.MapHealthChecks("/health");
 app.MapControllers();
 app.MapStaticFrontend(Path.Combine(app.Environment.WebRootPath));
 
