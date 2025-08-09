@@ -4,6 +4,6 @@
 
 bin
 obj
- #wwwroot/*
+#wwwroot/*
 
 **/.DS_Store

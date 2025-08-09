@@ -65,7 +65,7 @@ export default function App() {
 			<Card onDragOver={handleDragOver} onDragLeave={handleDragLeave} onDrop={handleDrop} className={`p-6 w-full max-w-md ${isDragging ? "border-2 border-dashed border-tremor-brand" : ""}`}>
 				<form onSubmit={handleSubmit} className={""}>
 					<Flex flexDirection={"row"} alignItems={"stretch"} className={"gap-4"}>
-						<input required type={"file"} name={"file"} ref={fileInputRef} onChange={(e: ChangeEvent<HTMLInputElement>) => setFile(e.target.files?.[0] || null)} className={clsx("file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-tremor-brand file:text-white", "hover:file:bg-tremor-brand-emphasis text-gray-300")} />
+						<input required type={"file"} name={"file"} ref={fileInputRef} onChange={(e: ChangeEvent<HTMLInputElement>) => setFile(e.target.files?.[0] || null)} className={clsx("file:mr-4 file:py-2 w-3/4 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-tremor-brand file:text-white", "hover:file:bg-tremor-brand-emphasis text-gray-300")} />
 						<button type={"submit"} className={"bg-tremor-brand hover:bg-tremor-brand-emphasis text-white font-bold py-2 px-4 rounded-lg transition-colors"}>
 							Upload
 						</button>
