@@ -1,4 +1,5 @@
 using Initium.Extensions;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +20,26 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+app.UseDefaultFiles(new DefaultFilesOptions
+{
+	FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.WebRootPath)),
+	RequestPath = "",
+	DefaultFileNames = new List<string> { "index.html" }
+});
+
+app.MapControllers();
+app.UseStaticFiles();
+
+app.UseStaticFiles(new StaticFileOptions
+{
+	FileProvider = new PhysicalFileProvider(Path.Combine(app.Environment.WebRootPath)),
+	RequestPath = ""
+});
+
+app.MapFallbackToFile("index.html", Path.Combine(app.Environment.WebRootPath));
+
 app.UseRouting();
 app.UseCors();
-app.UseStaticFiles();
-app.MapStaticAssets();
 app.MapHealthChecks("/health");
-app.MapControllers();
-app.MapStaticFrontend(Path.Combine(app.Environment.WebRootPath));
 
 app.Run();
