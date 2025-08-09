@@ -13,6 +13,9 @@ export default function App() {
 	const [isDragging, setIsDragging] = useState(false);
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
+	const origin = typeof window !== "undefined" && window.location?.origin ? window.location.origin : "https://fil.ez";
+	const curlCommand = `curl -F 'file=@${file?.name || "myfile.txt"}' ${origin}`;
+
 	const handleDragOver = (event: DragEvent) => {
 		event.preventDefault();
 		setIsDragging(true);
@@ -75,15 +78,15 @@ export default function App() {
 
 			<Card className={"p-6 w-full max-w-md mt-8"}>
 				<h2 className={"text-xl font-semibold mb-2"}>Upload via curl</h2>
-				<CopyToClipboard text={`curl -F 'file=@${file?.name || "myfile.txt"}' https://fil.ez`} onCopy={() => toast("Copied to clipboard.")}>
-					<pre className={"bg-white/5 cursor-pointer p-4 rounded text-sm font-mono text-tremor-brand overflow-x-auto"}>{`curl -F 'file=@${file?.name || "myfile.txt"}' https://fil.ez`}</pre>
+				<CopyToClipboard text={curlCommand} onCopy={() => toast("Copied to clipboard.")}>
+					<pre className={"bg-white/5 cursor-pointer p-4 rounded text-sm font-mono text-tremor-brand truncate"}>{curlCommand}</pre>
 				</CopyToClipboard>
 			</Card>
 
 			<footer className={"flex items-center gap-3 mt-10 text-sm text-gray-500"}>
 				Powered by XXI, LLC
 				<span>&bull;</span>
-				<a href="https://github.com/imclint21/filez" className={"inline-flex items-center gap-1 hover:text-tremor-brand-emphasis"}>
+				<a href={"https://github.com/imclint21/filez"} className={"inline-flex items-center gap-1 hover:text-tremor-brand-emphasis"}>
 					<SiGithub size={16} />
 					Fork us on GitHub
 				</a>
