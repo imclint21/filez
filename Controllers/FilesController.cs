@@ -14,7 +14,7 @@ public class FilesController(IMemoryCache cache) : ControllerBase
 	public IActionResult Upload([Required][FromForm] IFormFile file)
 	{
 		var fileRecord = file.Create();
-		cache.Set(fileRecord.Id, fileRecord, TimeSpan.FromMinutes(120));
+		cache.Set(fileRecord.Id, fileRecord, TimeSpan.FromDays(7));
 		return Ok($"{Request.Scheme}://{Request.Host}/{fileRecord.Id}\n");
 	}
 
