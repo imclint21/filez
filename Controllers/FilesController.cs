@@ -15,7 +15,7 @@ public class FilesController(IMemoryCache cache) : ControllerBase
 	{
 		var fileRecord = file.Create();
 		cache.Set(fileRecord.Id, fileRecord, TimeSpan.FromDays(7));
-		return Ok($"{Request.Scheme}://{Request.Host}/{fileRecord.Id}\n");
+		return Ok($"https://{Request.Host}/{fileRecord.Id}\n");
 	}
 
 	[HttpGet("{fileId}")]
